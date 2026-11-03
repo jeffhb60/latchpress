@@ -1,0 +1,639 @@
+
+/* ========================================
+   1. Theme Variables
+======================================== */
+
+:root {
+    color-scheme: light;
+
+    --ink: #18352d;
+    --ink-soft: #597068;
+    --brand: #176d51;
+    --surface: #fff;
+    --canvas: #f6f8f5;
+    --border: #dce5dd;
+    --focus: #0b6eeb;
+    --alert: #9a1c2c;
+}
+
+
+/* ========================================
+   2. Global Styles & Typography
+======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: Inter, ui-sans-serif, -apple-system,
+                 BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: var(--brand);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1 {
+    font-size: clamp(2rem, 4.5vw, 3.3rem);
+    line-height: 1.17;
+    letter-spacing: -.035em;
+}
+
+h2 {
+    font-size: 1.35rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+
+/* ========================================
+   3. Layout & Containers
+======================================== */
+
+.container {
+    width: min(1090px, calc(100% - 36px));
+    margin-inline: auto;
+}
+
+.main-content {
+    min-height: 70vh;
+    padding-block: 54px 70px;
+}
+
+.two-column {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 290px;
+    gap: 38px;
+}
+
+.muted,
+.excerpt {
+    color: var(--ink-soft);
+}
+
+.small {
+    font-size: .83rem;
+}
+
+.text-link {
+    font-weight: 650;
+}
+
+
+/* ========================================
+   4. Site Header & Navigation
+======================================== */
+
+.site-header {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+}
+
+.topbar {
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.27rem;
+    color: var(--ink);
+    font-weight: 780;
+}
+
+.brand:hover {
+    text-decoration: none;
+}
+
+.brand-mark {
+    display: grid;
+    place-items: center;
+    background: var(--brand);
+    color: #fff;
+    border-radius: 11px;
+    width: 35px;
+    height: 35px;
+    font-weight: 850;
+}
+
+.topnav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 22px;
+    font-size: .92rem;
+    font-weight: 550;
+}
+
+.topnav a {
+    color: var(--ink);
+}
+
+.inline-form {
+    display: inline;
+    margin: 0;
+}
+
+.nav-button {
+    background: none;
+    border: 0;
+    color: var(--ink);
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+}
+
+
+/* ========================================
+   5. Hero Section
+======================================== */
+
+.hero {
+    padding: 42px 0 55px;
+    max-width: 740px;
+}
+
+.hero h1 {
+    font-size: clamp(2.55rem, 5.5vw, 4rem);
+}
+
+.hero h1 span {
+    color: var(--brand);
+}
+
+.hero p {
+    font-size: 1.12rem;
+    color: var(--ink-soft);
+}
+
+.eyebrow {
+    color: var(--brand);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+    margin-bottom: 13px;
+}
+
+
+/* ========================================
+   6. Posts & Sidebar Cards
+======================================== */
+
+.post-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 26px 30px;
+    margin: 18px 0;
+}
+
+.post-card h3 {
+    font-size: 1.45rem;
+    margin: 12px 0;
+}
+
+.post-card h3 a {
+    color: var(--ink);
+}
+
+.sidebar-card,
+.card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 19px;
+}
+
+.sidebar-card h2 {
+    font-size: 1.08rem;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* ========================================
+   7. Article / Reading Page
+======================================== */
+
+.reading-page {
+    max-width: 780px;
+    margin: 28px auto;
+}
+
+.reading-page .eyebrow {
+    margin-top: 32px;
+}
+
+.reading-page h1 {
+    margin-bottom: 18px;
+}
+
+.reading-page hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 32px 0;
+}
+
+.article-body {
+    font-size: 1.08rem;
+    line-height: 1.85;
+    overflow-wrap: anywhere;
+}
+
+.article-body p {
+    margin: 0 0 1.3em;
+}
+
+
+/* ========================================
+   8. Dashboard
+======================================== */
+
+.dashboard-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 27px;
+}
+
+.dashboard-heading h1 {
+    font-size: 2.6rem;
+    margin-bottom: 9px;
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+}
+
+.stat-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 24px;
+}
+
+.stat-card span {
+    display: block;
+    color: var(--ink-soft);
+    font-size: .88rem;
+}
+
+.stat-card strong {
+    font-size: 2.65rem;
+    line-height: 1.3;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+
+/* ========================================
+   9. Dashboard Item Lists
+======================================== */
+
+.item-list .item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.item-list .item-row:last-child {
+    border: 0;
+}
+
+.item-row .muted {
+    margin-top: 3px;
+}
+
+.empty-state {
+    padding: 35px 20px;
+    color: var(--ink-soft);
+    text-align: center;
+}
+
+.empty-state h1 {
+    color: var(--ink);
+}
+
+
+/* ========================================
+   10. Buttons
+======================================== */
+
+.btn {
+    border-radius: 9px;
+    display: inline-block;
+    border: 1px solid var(--border);
+    padding: 11px 17px;
+    font-size: .93rem;
+    font-weight: 650;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #10513d;
+    text-decoration: none;
+}
+
+.btn-muted {
+    background: #fff;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+
+/* ========================================
+   11. Authentication
+======================================== */
+
+.auth-card {
+    max-width: 450px;
+    margin: 36px auto;
+    padding: 39px;
+}
+
+.auth-card h1 {
+    font-size: 2.1rem;
+}
+
+
+/* ========================================
+   12. Forms & Input Fields
+======================================== */
+
+.field {
+    margin-bottom: 22px;
+}
+
+.field label {
+    display: block;
+    font-weight: 650;
+    margin-bottom: 7px;
+}
+
+.field input,
+.field textarea,
+.field select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #b6c5ba;
+    border-radius: 8px;
+    background: #fff;
+    color: var(--ink);
+    font: inherit;
+}
+
+.field textarea {
+    resize: vertical;
+    min-height: 240px;
+}
+
+.field-error,
+.form-errors {
+    color: var(--alert);
+    font-size: .88rem;
+}
+
+.form-errors {
+    margin-bottom: 14px;
+}
+
+.field-hint,
+.form-note {
+    font-size: .8rem;
+    color: var(--ink-soft);
+    margin: 5px 0;
+}
+
+.form-note {
+    margin-top: 19px;
+}
+
+.editor-card {
+    max-width: 780px;
+    padding: 38px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+}
+
+
+/* ========================================
+   13. Alerts & Notices
+======================================== */
+
+.notice {
+    background: #ecf6f0;
+    border: 1px solid #c7e4d2;
+    color: #19593d;
+    border-radius: 10px;
+    padding: 11px 16px;
+    margin-bottom: 16px;
+}
+
+
+/* ========================================
+   14. Tables
+======================================== */
+
+.table-scroll {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 600px;
+}
+
+.data-table th {
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--border);
+    padding: 12px;
+}
+
+.data-table td {
+    padding: 17px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: .91rem;
+}
+
+.data-table tr:last-child td {
+    border-bottom: 0;
+}
+
+
+/* ========================================
+   15. Status Indicators
+======================================== */
+
+.status {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 99px;
+    font-size: .79rem;
+    font-weight: 650;
+    background: #eef1ee;
+}
+
+.status-published {
+    color: #136147;
+    background: #e4f5e9;
+}
+
+.status-draft {
+    color: #7b5f20;
+    background: #faf0d5;
+}
+
+
+/* ========================================
+   16. Utility Actions & Pagination
+======================================== */
+
+.link-danger {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    color: var(--alert);
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 24px 0;
+    font-size: .92rem;
+}
+
+
+/* ========================================
+   17. Footer
+======================================== */
+
+.footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 0 40px;
+    color: var(--ink-soft);
+    font-size: .84rem;
+}
+
+
+/* ========================================
+   18. Responsive Layout
+======================================== */
+
+@media (max-width: 740px) {
+
+    .two-column {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-heading {
+        flex-direction: column;
+    }
+
+    .main-content {
+        padding-block: 32px 50px;
+    }
+
+    .topnav {
+        gap: 11px;
+    }
+
+    .topbar {
+        min-height: 65px;
+    }
+
+    .brand {
+        font-size: 1.09rem;
+    }
+
+    .post-card,
+    .sidebar-card,
+    .card {
+        padding: 21px;
+    }
+}

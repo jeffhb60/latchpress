@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard · {{ site_name }}{% endblock %}
+{% block content %}
+<div class="dashboard-heading">
+  <div><div class="eyebrow">LATCHPRESS WORKSPACE</div><h1>Overview</h1><p class="muted">Hello {{ request.user.username }}. Your role is <strong>{{ role }}</strong>.</p></div>
+  {% if can_create %}<a class="btn btn-primary" href="{% url 'entry_new' %}">+ New content</a>{% endif %}
+</div>
+<div class="stat-grid">
+  <div class="stat-card"><span>Total content</span><strong>{{ total }}</strong></div>
+  <div class="stat-card"><span>Published</span><strong>{{ published }}</strong></div>
+  <div class="stat-card"><span>Drafts</span><strong>{{ drafts }}</strong></div>
+</div>
+<div class="toolbar"><h2>Recent content</h2><div class="actions">
+  {% if can_create %}<a href="{% url 'entry_list' %}">Manage content &rarr;</a>{% endif %}
+  {% if request.user.is_superuser %}<a href="{% url 'user_list' %}">Manage users &rarr;</a>{% endif %}
+</div></div>
+<div class="card">
+{% if recent %}<div class="item-list">{% for entry in recent %}<div class="item-row">
+ <div><strong>{{ entry.title }}</strong><div class="muted small">{{ entry.get_kind_display }} · {{ entry.get_status_display }}</div></div>
+ {% if can_create %}<a href="{% url 'entry_edit' entry.pk %}">Edit</a>{% endif %}
+</div>{% endfor %}</div>
+{% else %}<div class="empty-state">Nothing here yet. {% if can_create %}Create your first post to get started.{% else %}Your account has read-only access.{% endif %}</div>{% endif %}
+</div>
+{% endblock %}

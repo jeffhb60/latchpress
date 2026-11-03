@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+  <div class="eyebrow">LIGHTWEIGHT PUBLISHING</div>
+  <h1>Stories and ideas, <span>beautifully simple.</span></h1>
+  <p>Welcome to {{ site_name }}. A little less complexity, a little more room for what matters.</p>
+</section>
+<div class="two-column">
+  <section>
+    <div class="section-heading"><h2>Latest posts</h2></div>
+    {% for post in posts %}
+    <article class="post-card">
+      <div class="muted small">{{ post.published_at|date:'F j, Y' }} · {{ post.author.username|default:'Site team' }}</div>
+      <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+      <p class="excerpt">{{ post.body|truncatechars:190 }}</p>
+      <a class="text-link" href="{{ post.get_absolute_url }}">Read article &rarr;</a>
+    </article>
+    {% empty %}
+    <div class="empty-state">Nothing published yet. Sign in to create your first post!</div>
+    {% endfor %}
+    {% if is_paginated %}<div class="pagination">
+      {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">&larr; Newer</a>{% endif %}
+      <span>Page {{ page_obj.number }} of {{ paginator.num_pages }}</span>
+      {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">Older &rarr;</a>{% endif %}
+    </div>{% endif %}
+  </section>
+  <aside class="sidebar">
+    <div class="sidebar-card"><h2>Pages</h2>
+      {% for page in pages %}<p><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></p>
+      {% empty %}<p class="muted">Your site's pages will appear here.</p>{% endfor %}
+    </div>
+    <div class="sidebar-card"><h2>About this site</h2><p>Built with LatchPress, a secure Django-powered content management system.</p></div>
+  </aside>
+</div>
+{% endblock %}

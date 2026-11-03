@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}{{ heading }} · {{ site_name }}{% endblock %}
+{% block content %}
+<div class="dashboard-heading"><div><div class="eyebrow">EDITOR</div><h1>{{ heading }}</h1></div><a href="{% url 'entry_list' %}">Cancel</a></div>
+<form method="post" class="editor-card card">{% csrf_token %}
+  {% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}
+  {% for field in form %}<div class="field"><label for="{{ field.id_for_label }}">{{ field.label }}</label>
+    {{ field }}{% if field.help_text %}<div class="field-hint">{{ field.help_text }}</div>{% endif %}
+    {% for error in field.errors %}<p class="field-error">{{ error }}</p>{% endfor %}</div>{% endfor %}
+  <div class="form-actions"><button class="btn btn-primary" type="submit">Save content</button>
+  {% if entry and entry.status == 'published' %}<a class="btn btn-muted" href="{{ entry.get_absolute_url }}">View live</a>{% endif %}</div>
+  <p class="form-note">Content is stored as plain text and safely escaped when displayed. Rich blocks come in a future version.</p>
+</form>
+{% endblock %}

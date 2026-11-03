@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}{{ entry.title }} · {{ site_name }}{% endblock %}
+{% block content %}
+<article class="reading-page">
+  <a class="text-link" href="{% url 'home' %}">&larr; Back to site</a>
+  <div class="eyebrow">{{ entry.get_kind_display|upper }}</div>
+  <h1>{{ entry.title }}</h1>
+  <p class="muted">Published {{ entry.published_at|date:'F j, Y' }}{% if entry.author %} · {{ entry.author.username }}{% endif %}</p>
+  <hr>
+  <div class="article-body">{{ entry.body|linebreaks }}</div>
+</article>
+{% endblock %}

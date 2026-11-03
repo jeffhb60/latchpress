@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Sign in · {{ site_name }}{% endblock %}
+{% block content %}
+<div class="auth-card card">
+  <div class="eyebrow">YOUR WORKSPACE</div>
+  <h1>Welcome back</h1>
+  <p class="muted">Sign in with your LatchPress account.</p>
+  {% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}
+  <form method="post">{% csrf_token %}
+    {% for field in form %}
+      <div class="field"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}
+      {% for error in field.errors %}<p class="field-error">{{ error }}</p>{% endfor %}</div>
+    {% endfor %}
+    <input type="hidden" name="next" value="{{ next }}">
+    <button class="btn btn-primary btn-full" type="submit">Sign in</button>
+  </form>
+  <p class="form-note">Accounts are created by the site owner. Public registration is disabled.</p>
+</div>
+{% endblock %}

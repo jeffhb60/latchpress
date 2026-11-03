@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Content · {{ site_name }}{% endblock %}
+{% block content %}
+<div class="dashboard-heading"><div><div class="eyebrow">PUBLISHING</div><h1>Content library</h1><p class="muted">Manage your posts, pages and drafts.</p></div>
+<a class="btn btn-primary" href="{% url 'entry_new' %}">+ New content</a></div>
+<div class="card table-scroll"><table class="data-table"><thead><tr><th>Title</th><th>Type</th><th>Status</th><th>Updated</th><th>Actions</th></tr></thead><tbody>
+{% for entry in entries %}<tr>
+  <td><strong>{{ entry.title }}</strong><div class="muted small">/{{ entry.slug }}</div></td>
+  <td>{{ entry.get_kind_display }}</td>
+  <td><span class="status status-{{ entry.status }}">{{ entry.get_status_display }}</span></td>
+  <td>{{ entry.updated_at|date:'M j, Y' }}</td>
+  <td><div class="actions"><a href="{% url 'entry_edit' entry.pk %}">Edit</a>
+  {% if entry.status == 'published' %}<a href="{{ entry.get_absolute_url }}">View</a>{% endif %}
+  <form action="{% url 'entry_delete' entry.pk %}" method="post" class="inline-form">{% csrf_token %}<button type="submit" class="link-danger">Delete</button></form></div></td>
+</tr>{% empty %}<tr><td colspan="5" class="empty-state">No content yet.</td></tr>{% endfor %}
+</tbody></table></div>
+<p class="muted small">Showing up to 100 entries in this first release.</p>
+{% endblock %}

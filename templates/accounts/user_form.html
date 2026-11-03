@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Add user · {{ site_name }}{% endblock %}
+{% block content %}
+<div class="dashboard-heading"><div><div class="eyebrow">OWNER CONTROLS</div><h1>New user</h1></div><a href="{% url 'user_list' %}">Cancel</a></div>
+<form method="post" class="editor-card card">{% csrf_token %}
+{% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}
+{% for field in form %}<div class="field"><label for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}
+{% if field.help_text %}<div class="field-hint">{{ field.help_text|striptags }}</div>{% endif %}
+{% for error in field.errors %}<p class="field-error">{{ error }}</p>{% endfor %}</div>{% endfor %}
+<button class="btn btn-primary" type="submit">Create account</button>
+</form>
+{% endblock %}
