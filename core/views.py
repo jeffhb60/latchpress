@@ -1,5 +1,5 @@
 from django.views.generic import ListView
-from publishing import Entry
+from publishing.models import Entry
 
 class HomeView(ListView):
     model = Entry
